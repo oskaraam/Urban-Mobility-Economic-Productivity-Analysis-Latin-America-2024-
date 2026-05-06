@@ -27,31 +27,6 @@ Evaluate how **urban mobility relates to economic productivity** in major Latin 
 
 ---
 
-## ▶️ How to Run the Notebook
-
-### Option A — Google Colab (recommended)
-
-1. Open [Google Colab](https://colab.research.google.com/)
-2. Go to **File → Upload notebook** and upload `S5_ladb_mobility_economy_project_student.ipynb`
-3. Upload the CSV files to `/datasets/` via **File → Upload to session storage**
-4. Run all cells with `Runtime → Run all`
-
-### Option B — Local Jupyter Notebook
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-
-# 2. Install dependencies
-pip install pandas numpy matplotlib seaborn
-
-# 3. Open the notebook
-jupyter notebook S5_ladb_mobility_economy_project_student.ipynb
-```
-
----
-
 ## 🔁 Reproduction Guide
 
 1. Place both CSV files in the `/datasets/` directory
@@ -98,11 +73,6 @@ Argentina, Brazil, Chile, Colombia, Mexico, Peru, Uruguay
 
 Buenos Aires, Belo Horizonte, Bogotá, Brasília, Curitiba, Fortaleza, Lima, Mexico City, Montevideo, Porto Alegre, Recife, Rio de Janeiro, Salvador, Santiago, São Paulo
 
----
-
-## 📌 Notes
-
-- Column `pm25_ug_m3` remains as `object` type in the raw data due to comma-as-decimal formatting — handle this before using it in numerical analysis.
 - The inner join excludes cities not present in both datasets, ensuring data consistency.
 - Outlier cities (e.g., Mexico City, Tokyo, New York) may skew global averages — consider filtering by region for regional analysis.
 
