@@ -1,81 +1,55 @@
-# 🌎 Urban Mobility & Economic Productivity Analysis — Latin America (2024)
+# 🌎 Análisis de Movilidad Urbana y Productividad Económica — América Latina (2024)
 
-## 🎯 Project Objective
+## 🎯 Objetivo del Proyecto
 
-Evaluate how **urban mobility relates to economic productivity** in major Latin American cities using real data from **TomTom Traffic Index** and **OECD Cities**. The goal is to identify which cities would benefit most from investment in transportation infrastructure.
+Evaluar cómo **la movilidad urbana se relaciona con la productividad económica** en las principales ciudades de América Latina utilizando datos reales de **TomTom Traffic Index** y **OECD Cities**. El objetivo es identificar qué ciudades se beneficiarían más de la inversión en infraestructura de transporte.
 
 ---
 
-## 📂 Datasets Used
+## 📂 Datasets Utilizados
 
-| File | Description |
+| Archivo | Descripción |
 |---|---|
-| `tomtom_traffic.csv` | Real-time and historical traffic data by city (congestion, travel times, jam counts) |
-| `oecd_city_economy.csv` | Economic indicators by city (GDP per capita, unemployment, population, PM2.5) |
+| `tomtom_traffic.csv` | Datos de tráfico histórico y en tiempo real por ciudad (congestión, tiempos de viaje, conteo de embotellamientos) |
+| `oecd_city_economy.csv` | Indicadores económicos por ciudad (PIB per cápita, desempleo, población, PM2.5) |
 
 ---
 
-## 🧩 Analysis Stages
+## 🧩 Etapas del Análisis
 
-1. **Load and explore** — Load both datasets, inspect structure, data types, and first rows.
-2. **Clean and prepare data** — Fix date formats, correct numeric separators, standardize column names to `snake_case`, and handle type conversions.
-3. **Extract year and filter** — Extract year from timestamps and filter records for 2024 only using `.copy()` to preserve originals.
-4. **Aggregate mobility data** — Group traffic data by `city`, `country`, and `year`, computing averages for key metrics (jams delay, travel times, jam count).
-5. **Merge datasets** — Inner join traffic and economic data on `city` and `year` to retain only cities present in both sources.
-6. **Visualize relationships** — Boxplot for traffic distribution, histogram for GDP per capita, and comparative bar chart.
-7. **Export and document** — Export the final clean dataset and write an executive summary with findings and recommendations.
+1. **Cargar y explorar** — Cargar ambos datasets, inspeccionar la estructura, tipos de datos y primeras filas.
+2. **Limpiar y preparar datos** — Corregir formatos de fecha, ajustar separadores numéricos, estandarizar nombres de columnas a `snake_case` y gestionar conversiones de tipo.
+3. **Extraer año y filtrar** — Extraer el año de las marcas de tiempo y filtrar registros únicamente para el 2024 utilizando `.copy()` para preservar los originales.
+4. **Agregar datos de movilidad** — Agrupar datos de tráfico por `city`, `country` y `year`, calculando promedios para métricas clave (retraso por embotellamientos, tiempos de viaje, conteo de embotellamientos).
+5. **Unir datasets (Merge)** — Unir (inner join) los datos de tráfico y economía en función de `city` y `year` para conservar solo las ciudades presentes en ambas fuentes.
+6. **Visualizar relaciones** — Diagrama de caja (boxplot) para la distribución del tráfico, histograma para el PIB per cápita y gráfico de barras comparativo.
+7. **Exportar y documentar** — Exportar el dataset final limpio y redactar un resumen ejecutivo con hallazgos y recomendaciones.
 
 ---
 
-## 🔁 Reproduction Guide
+## 🔁 Guía de Reproducción
 
-1. Place both CSV files in the `/datasets/` directory
-2. Run cells **in sequential order** — each step depends on the previous one
-3. Key DataFrames built throughout the notebook:
+1. Colocar ambos archivos CSV en el directorio `/datasets/`
+2. Ejecutar las celdas **en orden secuencial** — cada paso depende del anterior
+3. DataFrames clave creados a lo largo del cuaderno:
 
-| Variable | Content |
+| Variable | Contenido |
 |---|---|
-| `traffic` | Raw traffic data (1M+ rows) |
-| `eco` | Economic indicators per city |
-| `traffic_2024` | Traffic data filtered to year 2024 |
-| `eco_2024` | Economic data filtered to year 2024 |
-| `traffic_city_year_2024` | Average traffic metrics aggregated by city and year |
-| `merged` | Final dataset — inner join of traffic + economy |
+| `traffic` | Datos crudos de tráfico (+1M de filas) |
+| `eco` | Indicadores económicos por ciudad |
+| `traffic_2024` | Datos de tráfico filtrados para el año 2024 |
+| `eco_2024` | Datos económicos filtrados para el año 2024 |
+| `traffic_city_year_2024` | Métricas promedio de tráfico agregadas por ciudad y año |
+| `merged` | Dataset final — inner join de tráfico + economía |
 
-4. The final clean dataset is exported as `ladb_mobility_economy_2024_clean.csv`
+4. El dataset final limpio se exporta como `ladb_mobility_economy_2024_clean.csv`
 
 ---
 
-## 🛠️ Required Libraries
+## 🛠️ Librerías Requeridas
 
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-```
-
----
-
-## 🔍 Key Findings
-
-- **No clear linear relationship** was found between GDP per capita and congestion levels across Latin American cities.
-- **Bogotá** stands out as a priority city — high congestion combined with a lower GDP per capita compared to peers like Buenos Aires.
-- Cities like **Mexico City** and **São Paulo** show the highest jam delays but vary significantly in economic output.
-- High variability in traffic indicators exists even among cities within similar GDP ranges.
-
----
-
-## 📊 Cities Covered (2024)
-
-**15 cities across 7 countries:**
-Argentina, Brazil, Chile, Colombia, Mexico, Peru, Uruguay
-
-Buenos Aires, Belo Horizonte, Bogotá, Brasília, Curitiba, Fortaleza, Lima, Mexico City, Montevideo, Porto Alegre, Recife, Rio de Janeiro, Salvador, Santiago, São Paulo
-
-- The inner join excludes cities not present in both datasets, ensuring data consistency.
-- Outlier cities (e.g., Mexico City, Tokyo, New York) may skew global averages — consider filtering by region for regional analysis.
-
----
-
-*Project developed as part of Sprint 5 — Data Analysis*
